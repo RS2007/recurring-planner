@@ -38,9 +38,9 @@ func dbInitialize() {
 	sqlInit := `
     CREATE TABLE IF NOT EXISTS users(
         userId SERIAL PRIMARY KEY,
-        name TEXT NOT NULL UNIQUE,
+        name TEXT NOT NULL,
         password TEXT NOT NULL,
-        email TEXT NOT NULL,
+        email TEXT NOT NULL UNIQUE,
         accentColor TEXT,
         apiKey TEXT
     ); 

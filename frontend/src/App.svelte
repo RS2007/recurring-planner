@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { SvelteToast } from "@zerodevx/svelte-toast";
   import Sidebar from "./components/Sidebar.svelte";
   import Calendar from "./views/Calendar.svelte";
   import TemplateBar from "./views/TemplateBar.svelte";
@@ -8,6 +9,7 @@
 </script>
 
 <Router>
+  <SvelteToast />
   <Route path="/dashboard">
     <div
       class="grid grid-cols-[repeat(16,1fr)] w-[100%] min-h-screen  h-fit bg-backgroundDashboard text-white"
