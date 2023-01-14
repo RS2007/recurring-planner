@@ -8,6 +8,8 @@
   import { ChevronDown, Icon } from "svelte-hero-icons";
   import { fade } from "svelte/transition";
   import Empty from "../components/Empty.svelte";
+  import { accentColors } from "../utils/formUtils";
+  import { getUser, themeColor } from "../utils/userUtils";
   const views = ["Day View", "Month View", "Year View"];
   const days = [
     { abbrev: "MON", name: "Monday" },
@@ -33,7 +35,8 @@
   >
     <div>January 2022</div>
     <Listbox value={selectedView} on:change={changeViewState}>
-      <ListboxButton class="bg-blue-600 px-3 pt-2 pb-1 rounded-lg flex gap-2"
+      <ListboxButton
+        class={`${themeColor()} px-3 pt-2 pb-1 rounded-lg flex gap-2`}
         ><span>{selectedView}</span><Icon
           src={ChevronDown}
           class="h-6 w-6"

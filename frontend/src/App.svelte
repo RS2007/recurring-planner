@@ -6,6 +6,7 @@
   import EventDetailsDrawer from "./views/EventDetailsDrawer.svelte";
   import Auth from "./views/Auth.svelte";
   import { Router, Route } from "svelte-navigator";
+  import NewTemplate from "./views/NewTemplate.svelte";
 </script>
 
 <Router>
@@ -25,6 +26,15 @@
       class="min-h-screen h-fit bg-backgroundDashboard text-white flex  items-center w-full flex-col justify-center"
     >
       <Auth />
+    </div>
+  </Route>
+  <Route path="/dashboard/template/new">
+    <div
+      class="grid grid-cols-[repeat(16,1fr)] w-[100%] min-h-screen  h-fit bg-backgroundDashboard text-white"
+    >
+      <Sidebar />
+      <TemplateBar />
+      <NewTemplate />
     </div>
   </Route>
 </Router>

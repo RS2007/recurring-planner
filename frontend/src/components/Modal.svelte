@@ -1,31 +1,34 @@
 <script lang="ts">
-  import {
-    Dialog,
-    DialogOverlay,
-    DialogTitle,
-    DialogDescription,
-  } from "@rgossiaux/svelte-headlessui";
-  export let isOpen;
+  import { Dialog, DialogOverlay } from "@rgossiaux/svelte-headlessui";
+  import { fade } from "svelte/transition";
+  export let isOpen: boolean;
 </script>
 
-<Dialog
-  open={isOpen}
-  on:close={() => (isOpen = false)}
-  class="fixed inset-0 p-4 pt-[25vh] "
->
-  <DialogOverlay />
-  <div class="bg-pink-200">
-    <DialogTitle>Deactivate account</DialogTitle>
-    <DialogDescription>
-      This will permanently deactivate your account
-    </DialogDescription>
+{#if isOpen}
+  <Dialog
+    open={isOpen}
+    on:close={() => (isOpen = false)}
+    class="fixed inset-0 p-4 pt-[20vh] flex h-fit justify-center"
+  >
+    <DialogOverlay class="fixed top-0 left-0 w-full h-full bg-white/10 " />
+    <div
+      class="bg-highlightPurple w-[500px] min-w-[300px] overflow-y-scroll h-fit rounded-xl modal flex-col z-10 p-8"
+      transition:fade
+    >
+      <slot />
+    </div>
+  </Dialog>
+{/if}
 
-    <p>
-      Are you sure you want to deactivate your account? All of your data will be
-      permanently removed. This action cannot be undone.
-    </p>
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .modal::-webkit-scrollbar {
+    display: none;
+  }
 
-    <button on:click={() => (isOpen = false)}>Deactivate</button>
-    <button on:click={() => (isOpen = false)}>Cancel</button>
-  </div>
-</Dialog>
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .modal {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>

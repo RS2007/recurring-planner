@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { DialogDescription, DialogTitle } from "@rgossiaux/svelte-headlessui";
   import { Icon, FolderAdd, ChevronUp, ChevronDown } from "svelte-hero-icons";
+  import { useNavigate } from "svelte-navigator";
   import Modal from "../components/Modal.svelte";
+  import CreateTemplateModal from "./CreateTemplateModal.svelte";
   import TemplateCard from "./TemplateCard.svelte";
 
   type schedule = {
@@ -15,7 +18,7 @@
     expanded: boolean;
   };
 
-  let isOpen = false;
+  const navigate = useNavigate();
 
   const templates: Array<templateType> = [
     {
@@ -46,13 +49,13 @@
     <p class="text-2xl">My templates</p>
     <button
       on:click={() => {
-        isOpen = true;
+        navigate("/dashboard/template/new");
       }}
     >
       <Icon src={FolderAdd} class="h-6 w-6" />
     </button>
   </div>
-  <Modal {isOpen} />
+
   {#each templates as template}
     <TemplateCard {template} />
   {/each}

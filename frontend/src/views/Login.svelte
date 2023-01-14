@@ -9,17 +9,8 @@
   } from "../utils/formUtils";
   import { useNavigate } from "svelte-navigator";
   import { _axios } from "../utils/_axios";
-  type userCtx = {
-    email: string;
-    name: string;
-    accentColor: "Blue" | "Pink";
-  };
+  import { getUser, themeColor } from "../utils/userUtils";
 
-  function getUser(): userCtx {
-    let $user: userCtx;
-    user.subscribe(($) => ($user = $ as userCtx))();
-    return $user;
-  }
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -86,11 +77,5 @@
       <div class="text-red-500">{passwordError}</div>
     {/if}
   </div>
-  <button
-    class={`w-full ${
-      accentColors.find(
-        (accentColor) => accentColor.label === getUser().accentColor
-      ).class
-    } py-2 rounded-md`}>Login</button
-  >
+  <button class={`w-full ${themeColor()} py-2 rounded-md`}>Login</button>
 </form>
