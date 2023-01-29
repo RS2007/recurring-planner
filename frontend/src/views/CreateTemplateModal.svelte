@@ -18,6 +18,11 @@
       { summary, location, description, startTime, endTime },
     ];
     isOpen = false;
+    summary = "";
+    location = "";
+    description = "";
+    startTime = "";
+    endTime = "";
   };
 </script>
 

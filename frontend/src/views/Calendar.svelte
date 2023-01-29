@@ -22,7 +22,7 @@
   ];
   const numDays = [...Array(31).keys()].splice(1);
   const hours = [null, ...Array(24).keys()];
-  let selectedView = "Day View";
+  let selectedView = "Month View";
   const changeViewState = (e) => {
     console.log("in");
     selectedView = e.detail;
@@ -101,10 +101,10 @@
         {/each}
         {#each days as { abbrev }}
           <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 py-1"
+            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 "
           >
             <div
-              class="bg-[#1e4040] rounded-lg w-full h-[100px]  backdrop-saturate-[180%] backdrop-blur-sm "
+              class="bg-[#1e4040] border-[1px] border-white/10  w-full h-[50px]  backdrop-saturate-[180%] backdrop-blur-sm "
             >
               Go to library
             </div>
@@ -112,10 +112,10 @@
         {/each}
         {#each days as { abbrev }}
           <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 py-1"
+            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 "
           >
             <div
-              class="bg-highlightPurple  w-full h-[100px]  backdrop-saturate-[180%] backdrop-blur-sm "
+              class="bg-red-400/30 w-full h-[100px]  backdrop-saturate-[180%] backdrop-blur-sm border-[1px] border-white/10"
             />
           </div>
         {/each}

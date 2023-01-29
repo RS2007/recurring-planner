@@ -1,28 +1,37 @@
-<script>
+<script lang="ts">
+  import { toast } from "@zerodevx/svelte-toast";
+  import { _axios } from "../utils/_axios";
   import {
     Icon,
     LocationMarker,
     ViewList,
     Calendar,
     Plus,
+    XCircle,
   } from "svelte-hero-icons";
   import CreateTemplateModal from "./CreateTemplateModal.svelte";
+  let tagInput = "";
   let isOpen = false;
+  let name = "";
+  let tags = [];
+  const removeTags = (index: number) => {
+    tags = [...tags.splice(0, index), ...tags.splice(index + 1)];
+  };
 
   let events = [
     {
-      summary: "Google I/O 2015",
-      description: "800 Howard St., San Francisco, CA 94103",
-      location: "A chance to hear more about Google's developer products.",
-      startTime: "9 am",
-      endTime: "5 pm",
+      summary: "Google I/O 2017",
+      location: "800 Howard St., San Francisco, CA 94103",
+      description: "A chance to hear more about Googles developer products.",
+      startTime: 1675503000,
+      endTime: 1675506600,
     },
     {
-      summary: "Google I/O 2015",
-      description: "800 Howard St., San Francisco, CA 94103",
-      location: "A chance to hear more about Google's developer products.",
-      startTime: "9 am",
-      endTime: "5 pm",
+      summary: "Google I/O 2019",
+      location: "800 Howard St., San Francisco, CA 94103",
+      description: "A chance to hear more about Googles developer products.",
+      startTime: 1675503000,
+      endTime: 1675506600,
     },
   ];
 
@@ -30,25 +39,76 @@
     e.preventDefault();
     isOpen = true;
   };
+
+  const createTemplate = async (e) => {
+    e.preventDefault();
+    console.log({ events, name, tags });
+    try {
+      const res = await _axios.post(
+        "/template/new",
+        { name, tags: tags.map((tag: string) => ({ name: tag })), events },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("TOKEN_RP")}`,
+          },
+        }
+      );
+      if (res.status === 200) {
+        toast.push("Template creation succesful");
+      }
+    } catch (e) {
+      toast.push(e.message);
+    }
+  };
+
+  const IsTagInputValid = (tags) => tags.length > 3;
+
+  const createAndPushTags = (e) => {
+    if (e.key === " ") {
+      tags = [...tags, tagInput];
+      tagInput = "";
+    }
+  };
+
+  const onSubmit = () => {};
 </script>
 
 <div class="col-span-12  pl-4 pt-8">
   <h1 class="text-3xl mb-8">Create a new template</h1>
-  <form class="flex flex-col">
+  <form class="flex flex-col" on:submit={createTemplate}>
     <div class="flex gap-6">
       <div class="flex flex-col">
         <label>Name</label>
         <input
           type="text"
           class="pl-2 bg-highlightPurple w-[320px] min-h-[40px] rounded-lg"
+          bind:value={name}
         />
       </div>
       <div class="flex flex-col">
         <label>Tags</label>
-        <input
-          type="text"
-          class="pl-2 bg-highlightPurple w-[320px] min-h-[40px] rounded-lg"
-        />
+        <div
+          class="flex pl-2 bg-highlightPurple w-[400px] overflow-x-scroll min-h-[40px] rounded-lg focus-within:ring-1 focus-within:ring-slate-100\40 hide-scroll"
+        >
+          <ul class="inline-flex gap-2 items-center">
+            {#each tags as tag, index}
+              <li
+                class="bg-blue-600 px-2 rounded-lg inline-flex gap-1 items-center"
+              >
+                {tag}<button on:click={() => removeTags(index)}
+                  ><Icon src={XCircle} class="h-4 w-4" /></button
+                >
+              </li>
+            {/each}
+          </ul>
+          <input
+            type="text"
+            class="pl-2 bg-highlightPurple w-[320px] min-h-[40px] rounded-lg focus:outline-none"
+            on:keydown={createAndPushTags}
+            bind:value={tagInput}
+            disabled={IsTagInputValid(tags)}
+          />
+        </div>
       </div>
     </div>
     <div class="flex text-[24px] mt-2 mb-4 gap-4 items-center">
@@ -58,12 +118,12 @@
       >
       <CreateTemplateModal bind:isOpen bind:events />
     </div>
-    <div class="flex gap-6">
+    <div class="flex gap-6 flex-wrap">
       {#each events as event}
         <div
           class="pt-4 bg-highlightPurple h-[220px] w-[400px]  backdrop-saturate-[180%] backdrop-blur-sm text-md"
           style={`background: linear-gradient(105.69deg, #181E4C 1.05%, rgba(110, 123, 248, 0.59) 161.32%);
-border-radius: 10px;`}
+border-radius: 12px;`}
         >
           <h1 class="ml-4 text-[22px] font-extrabold">{event.summary}</h1>
           <hr class="border-white/10" />
@@ -101,3 +161,16 @@ border-radius: 10px;`}
     >
   </form>
 </div>
+
+<style>
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scroll {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+</style>

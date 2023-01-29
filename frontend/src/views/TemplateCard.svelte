@@ -3,13 +3,14 @@
   import { fade } from "svelte/transition";
   import { themeColor } from "../utils/userUtils";
   type schedule = {
-    title: string;
+    summary: string;
     startTime: string;
     endTime: string;
+    location: string;
   };
   type templateType = {
-    title: string;
-    schedule: Array<schedule>;
+    name: string;
+    events: Array<schedule>;
     expanded: boolean;
   };
 
@@ -28,25 +29,29 @@ border-radius: 10px;`}
 >
   <button on:click={collapseTemplate} class="w-full">
     <div class="flex justify-between pr-4 pl-4 py-3">
-      <p class="text-lg">{template.title}</p>
+      <p class="text-lg">{template.name}</p>
       <Icon src={template.expanded ? ChevronUp : ChevronDown} class="h-6 w-6" />
     </div>
   </button>
   {#if template.expanded}
     <div class={` mr-4 rounded-lg`} transition:fade>
-      {#each template.schedule as event}
+      {#each template.events as event}
         <div class="pl-4 py-2 flex flex-col mb-2">
           <div class=" flex justify-between">
-            <p class="text-md">{event.title}</p>
+            <p class="text-md">{event.summary}</p>
             <p class="text-md text-gray-400">
-              {event.startTime} - {event.endTime}
+              {`${new Date(event.startTime).getUTCHours()}:${new Date(
+                event.startTime
+              ).getUTCMinutes()}`} - {`${new Date(
+                event.endTime
+              ).getUTCHours()} :${new Date(event.endTime).getUTCMinutes()}`}
             </p>
           </div>
           <!-- {#if index != template.schedule.length - 1} -->
           <!--   <hr class="opacity-50" /> -->
           <!-- {/if} -->
           <div class={`${themeColor()} rounded-lg px-2 py-1 w-fit text-base`}>
-            First Floor
+            {event.location}
           </div>
         </div>
       {/each}

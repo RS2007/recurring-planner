@@ -17,8 +17,7 @@
   };
   const options: Array<optionsType> = [
     { title: "Calendar", icon: Calendar, active: true, link: "/dashboard" },
-    { title: "Customize", icon: Cog },
-    { title: "Profile", icon: UserCircle },
+    { title: "Customize", icon: Cog, link: "/dashboard/customize" },
     { title: "Log out", icon: Logout },
   ];
   const navigate = useNavigate();
