@@ -20,9 +20,10 @@
     { abbrev: "SAT", name: "Saturday" },
     { abbrev: "SUN", name: "Sunday" },
   ];
-  const numDays = [...Array(31).keys()].splice(1);
-  const hours = [null, ...Array(24).keys()];
-  let selectedView = "Month View";
+  const numDays = [...Array(new Date(2022, 1, 0).getDate()).keys()].splice(1);
+  const hours = [...Array(24).keys()];
+  const testArray = new Array(48).fill(new Array(8));
+  let selectedView = "Day View";
   const changeViewState = (e) => {
     console.log("in");
     selectedView = e.detail;
@@ -76,50 +77,26 @@
       {/each}
     </div>
   {:else if selectedView === "Day View"}
-    <div class="flex w-full">
-      <div class="flex flex-col w-[5%] ">
-        {#each hours as hour}
-          <span
-            class="border-[1px] border-white/10 px-6 h-[100px] text-gray-400"
-            >{hour === null ? "" : hour}
-          </span>
-        {/each}
+    <div class=" w-full h-full grid-cols-8 grid-rows-[repeat(48,50px)] grid">
+      <div class="col-span-1 row-span-2 border-[1px] border-white/10 px-2">
+        Time
       </div>
-      <div class="grid grid-rows-[repeat(34,50px)] grid-cols-7 w-[95%]">
-        {#each days as { abbrev }}
-          <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-2 py-1  flex-col items-center"
-          >
-            <div>{abbrev}</div>
-            <div>24</div>
-          </div>
-        {/each}
-        {#each days as { abbrev }}
-          <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 py-1  "
-          />
-        {/each}
-        {#each days as { abbrev }}
-          <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 "
-          >
-            <div
-              class="bg-[#1e4040] border-[1px] border-white/10  w-full h-[50px]  backdrop-saturate-[180%] backdrop-blur-sm "
-            >
-              Go to library
+      {#each days as day}
+        <div class="col-span-1 row-span-2 border-[1px] border-white/10 px-2">
+          {day.abbrev}
+        </div>
+      {/each}
+      {#each testArray as halfHour, halfHourIndex}
+        {#each halfHour as block, blockIndex}
+          {#if halfHourIndex % 2 == 0 && blockIndex == 0}
+            <div class="col-span-1 row-span-2 border-[1px] border-white/10">
+              {halfHourIndex / 2}
             </div>
-          </div>
+          {:else if blockIndex != 0}
+            <div class="col-span-1 row-span-1 border-[1px] border-white/10" />
+          {/if}
         {/each}
-        {#each days as { abbrev }}
-          <div
-            class="col-span-1 flex justify-center border-[1px] border-white/10 row-span-1 "
-          >
-            <div
-              class="bg-red-400/30 w-full h-[100px]  backdrop-saturate-[180%] backdrop-blur-sm border-[1px] border-white/10"
-            />
-          </div>
-        {/each}
-      </div>
+      {/each}
     </div>
   {:else}
     <Empty />
