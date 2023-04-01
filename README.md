@@ -13,6 +13,15 @@ With recurring planner, you can create templates and apply them to the days on w
 ## Screenshots
 
 ![Login with google](images/LoginWithGoogle.png)
+&nbsp;
+&nbsp;
+&nbsp;
 ![Create templates](images/createTemplate.png)
+&nbsp;
+&nbsp;
+&nbsp;
 ![Create events](images/createEvent.png)
+&nbsp;
+&nbsp;
+&nbsp;
 ![Calendar UI](images/calendarUI.png)
