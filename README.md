@@ -67,15 +67,15 @@ The only way to use Recurring Planner is to host it on your own. Steps to get RP
            GOOGLE_REDIRECT_URI=http://localhost:5000/api/auth
         ```
 
-   3. To generate google clientId and secret token go to google developers console, create an application, give permission to the /auth/calendar,/auth/userinfo.profile and /auth/userinfo.email
-   4. For the redirect URI on the console, give http://localhost:5000/api/auth and the javascript origin as http://localhost:5000.
-   5. ```bash
-       cd frontend && npm run build
-       cp -R dist ../backend
-       cd ../backend
-       go run .
-      ```
-   6. Go to your brower and type in http://localhost:5000
+3. To generate google clientId and secret token go to google developers console, create an application, give permission to the /auth/calendar,/auth/userinfo.profile and /auth/userinfo.email
+4. For the redirect URI on the console, give http://localhost:5000/api/auth and the javascript origin as http://localhost:5000.
+5. ```bash
+   cd frontend && npm run build
+   cp -R dist ../backend
+   cd ../backend
+   go run .
+   ```
+6. Go to your brower and type in http://localhost:5000
 
 ## I have issues trying to get it running
 
