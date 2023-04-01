@@ -26,7 +26,7 @@ func main() {
 	router.StaticFS("assets", http.FS(assets))
 
 	apiRouter := router.Group("/api")
-	apiRouter.POST("/auth", controllers.GoogleAuth)
+	apiRouter.GET("/auth", controllers.GoogleAuth)
 	template := apiRouter.Group("/template", middleware.AuthMiddleware)
 	{
 		template.POST("/new", controllers.CreateNewTemplate)
