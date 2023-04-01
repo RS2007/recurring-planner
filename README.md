@@ -48,7 +48,7 @@ The only way to use Recurring Planner is to host it on your own. Steps to get RP
 
    - For the frontend .env file add these fields:
 
-     1. ```
+     1. ```env
         #frontend
            VITE_GOOGLE_CLIENT_ID=<your-google-client-id>
            VITE_GOOGLE_SCOPE=https://www.googleapis.com/auth/calendar
