@@ -46,14 +46,14 @@
         <div class="flex flex-col text-white w-1/2">
           <label class="text-lg">Summary</label>
           <input
-            class="pl-2 bg-backgroundDashboard h-[40px] rounded-lg"
+            class="pl-2 bg-highlightPurple h-[40px] rounded-lg"
             bind:value={summary}
           />
         </div>
         <div class="flex flex-col text-white w-1/2">
           <label class="text-lg">Location</label>
           <input
-            class="pl-2 bg-backgroundDashboard h-[40px] rounded-lg"
+            class="pl-2 bg-highlightPurple h-[40px] rounded-lg"
             bind:value={location}
           />
         </div>
@@ -61,7 +61,7 @@
       <div class="flex flex-col text-white mb-2">
         <label class="text-lg">Description</label>
         <textarea
-          class="pl-2 bg-backgroundDashboard h-[100px] rounded-lg"
+          class="pl-2 bg-highlightPurple h-[100px] rounded-lg"
           bind:value={description}
         />
       </div>
@@ -69,14 +69,14 @@
         <div class="flex flex-col text-white w-1/2">
           <label class="text-lg">Start Time</label>
           <input
-            class="pl-2 bg-backgroundDashboard h-[40px] rounded-lg"
+            class="pl-2 bg-highlightPurple h-[40px] rounded-lg"
             bind:value={startTime}
           />
         </div>
         <div class="flex flex-col text-white w-1/2">
           <label class="text-lg">End Time</label>
           <input
-            class="pl-2 bg-backgroundDashboard h-[40px] rounded-lg"
+            class="pl-2 bg-highlightPurple h-[40px] rounded-lg"
             bind:value={endTime}
           />
         </div>

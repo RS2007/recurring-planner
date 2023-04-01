@@ -39,10 +39,8 @@ func dbInitialize() {
     CREATE TABLE IF NOT EXISTS users(
         userId SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
-        password TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE,
-        accentColor TEXT,
-        apiKey TEXT
+        accentColor TEXT
     ); 
 
     CREATE TABLE IF NOT EXISTS tags(
@@ -52,8 +50,8 @@ func dbInitialize() {
 
     CREATE TABLE IF NOT EXISTS events(
       eventId SERIAL PRIMARY KEY,
-      startDateTime bigint NOT NULL,
-      endDateTime bigint NOT NULL,
+      startTime TIME WITH TIME ZONE NOT NULL,
+      endTime TIME WITH TIME ZONE NOT NULL,
       location TEXT,
       summary TEXT UNIQUE,
       description TEXT
@@ -64,6 +62,7 @@ func dbInitialize() {
       templateId SERIAL PRIMARY KEY,
       name TEXT NOT NULL UNIQUE,
       userId INTEGER NOT NULL,
+      timeZone TEXT NOT NULL,
       FOREIGN KEY(userId)
         REFERENCES users (userId)
     );

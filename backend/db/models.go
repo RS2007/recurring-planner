@@ -2,7 +2,6 @@ package db
 
 type UserModel struct {
 	Name        string `json:"name" binding:"required"`
-	Password    string `json:"password" binding:"required"`
 	Email       string `json:"email" binding:"required"`
 	AccentColor string `json:"accentColor" binding:"required"`
 }
@@ -15,8 +14,8 @@ type UserModelWithId struct {
 type EventModel struct {
 	Location    string `json:"location" binding:"required"`
 	Summary     string `json:"summary" binding:"required"`
-	StartTime   int64  `json:"startTime" binding:"required"`
-	EndTime     int64  `json:"endTime" binding:"required"`
+	StartTime   string `json:"startTime" binding:"required"`
+	EndTime     string `json:"endTime" binding:"required"`
 	Description string `json:"description" binding:"required"`
 }
 
@@ -30,9 +29,10 @@ type TagModel struct {
 }
 
 type TemplateModel struct {
-	Name   string              `json:"name" binding:"required"`
-	Tags   []TagModel          `json:"tags" binding:"required"`
-	Events []EventModelWithIds `json:"events" binding:"required"`
+	Name     string              `json:"name" binding:"required"`
+	Tags     []TagModel          `json:"tags" binding:"required"`
+	Events   []EventModelWithIds `json:"events" binding:"required"`
+	TimeZone string              `json:"timeZone" binding:"required"`
 }
 
 type TemplateModelWithIds struct {
