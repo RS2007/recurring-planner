@@ -28,7 +28,7 @@ With recurring planner, you can create templates and apply them to the days on w
 
 ## I like this, how can i use this?
 
-### Prerequesites
+### Prerequisites
 
 - Node JS (>16.13.1)
 - Golang compiler (>1.19.2)
@@ -36,7 +36,7 @@ With recurring planner, you can create templates and apply them to the days on w
 
 ### Steps
 
-Currenlty the only way to use Recurring Planner is to host it on your own(Though i might host it sometime later). Steps to get RP up and running:
+Currently the only way to use Recurring Planner is to host it on your own(Though i might host it sometime later). Steps to get RP up and running:
 
 1. Clone the repository
 
@@ -63,7 +63,7 @@ Currenlty the only way to use Recurring Planner is to host it on your own(Though
            POSTGRES_DB_NAME=<postgres-db-name>
            JWT_SECRET=<your-jwt-secret>
            GOOGLE_CLIENT_ID=<your-google-client-id>
-           GOOGLE_CLIENT_SECRET=<your-google-client-secrte>
+           GOOGLE_CLIENT_SECRET=<your-google-client-secret>
            GOOGLE_REDIRECT_URI=http://localhost:5000/api/auth
         ```
 
@@ -75,7 +75,7 @@ Currenlty the only way to use Recurring Planner is to host it on your own(Though
    cd ../backend
    go get . && go run .
    ```
-6. Go to your brower and type in http://localhost:5000
+6. Go to your browser and type in http://localhost:5000
 
 ## I have issues trying to get it running
 
