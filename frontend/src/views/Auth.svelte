@@ -27,11 +27,10 @@
 				client.requestCode();
 			}}
 		>
-			Hey
+			Login with google
 		</button>
 	</div>
 	<div class="border-[2px] border-white/10 mt-4 p-4 rounded-lg">
-		New to reccurent planner, <span class="text-blue-400 cursor-pointer">create an account</span
-		>
+		For those with, <span class="text-blue-400 cursor-pointer">recuring plans</span>
 	</div>
 </div>
