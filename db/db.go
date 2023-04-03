@@ -36,7 +36,7 @@ func dbInitialize() {
 
     CREATE TABLE IF NOT EXISTS tags(
       tagId SERIAL PRIMARY KEY,
-      name  TEXT NOT NULL UNIQUE
+      name  TEXT NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS events(
@@ -44,7 +44,7 @@ func dbInitialize() {
       startTime TIME WITH TIME ZONE NOT NULL,
       endTime TIME WITH TIME ZONE NOT NULL,
       location TEXT,
-      summary TEXT UNIQUE,
+      summary TEXT NOT NULL,
       description TEXT
     );
 

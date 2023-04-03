@@ -17,3 +17,14 @@ export const numDaysInCurrentMonth = () =>
 export const getCurrentMonth = () => new Date().getMonth();
 
 export const getCurrentYear = () => new Date().getFullYear();
+
+export const getUTCOffset = () => {
+	const offset = new Date().getTimezoneOffset();
+	const hours = Math.floor(Math.abs(offset) / 60)
+		.toString()
+		.padStart(2, "0");
+	const minutes = Math.abs(offset % 60)
+		.toString()
+		.padStart(2, "0");
+	return `${offset < 0 ? "+" : "-"}${hours}:${minutes}`;
+};
