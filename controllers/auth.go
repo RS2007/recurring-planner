@@ -69,6 +69,6 @@ func GoogleAuth(c *gin.Context) {
 	utils.ErrorHandler(err)
 	jsonResponse, err := json.Marshal(gin.H{"token": tokenString, "name": user.Name, "accentColor": user.AccentColor, "email": user.Email, "googleAccessToken": tokenRes.AccessToken, "googleIdToken": tokenRes.IdToken})
 	utils.ErrorHandler(err)
-	c.SetCookie("RP_USER_DETAILS", string(jsonResponse), 3600, "/", "localhost", false, false)
+	c.SetCookie("RP_USER_DETAILS", string(jsonResponse), 3600, "/", "https://recurring-planner-monorepo.onrender.com/", false, false)
 	c.Redirect(http.StatusPermanentRedirect, "/")
 }
