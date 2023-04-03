@@ -6,7 +6,7 @@
 	import { templatesStore } from "../store/templateStore";
 	import { userStore } from "../store/userStore";
 	import { dateStringConstructor } from "../utils/dateUtils";
-	import { getGoogleToken } from "../utils/userUtils";
+	import { getGoogleToken, userAuthToken } from "../utils/userUtils";
 	import { _axios } from "../utils/_axios";
 	import type { userCtx, templateType } from "../utils/types";
 	export let isOpen: boolean;
@@ -25,16 +25,24 @@
 		}
 		const { accessToken, idToken } = getGoogleToken();
 		try {
-			await _axios.post(`/template/day`, {
-				dateString: dateStringConstructor(
-					selectedDay - firstDayOfMonth + 1,
-					new Date().getMonth() + 1,
-					new Date().getFullYear()
-				),
-				templateId: templates[selectedIndex].templateId,
-				accessToken,
-				idToken,
-			});
+			await _axios.post(
+				`/template/day`,
+				{
+					dateString: dateStringConstructor(
+						selectedDay - firstDayOfMonth + 1,
+						new Date().getMonth() + 1,
+						new Date().getFullYear()
+					),
+					templateId: templates[selectedIndex].templateId,
+					accessToken,
+					idToken,
+				},
+				{
+					headers: {
+						Authorization: `Bearer ${userAuthToken()}`,
+					},
+				}
+			);
 			toast.push("Event pushed to your google calendar succesfully");
 		} catch (err) {
 			console.log(err);

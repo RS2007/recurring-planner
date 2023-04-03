@@ -18,7 +18,12 @@ func AuthMiddleware(c *gin.Context) {
 	utils.ErrorHandler(err)
 	jwtSecretString := os.Getenv("JWT_SECRET")
 	fmt.Println(authHeader)
-	token := strings.Split(authHeader, " ")[1]
+	authHeaderSplit := strings.Split(authHeader, " ")
+	if len(authHeaderSplit) != 2 {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Invalid request"})
+		return
+	}
+	token := authHeaderSplit[1]
 	if authHeader != "" {
 		claims := jwt.MapClaims{}
 		user, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
