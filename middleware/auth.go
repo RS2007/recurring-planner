@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"better_calendar_backend/utils"
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -16,6 +17,7 @@ func AuthMiddleware(c *gin.Context) {
 	err := godotenv.Load()
 	utils.ErrorHandler(err)
 	jwtSecretString := os.Getenv("JWT_SECRET")
+	fmt.Println(authHeader)
 	token := strings.Split(authHeader, " ")[1]
 	if authHeader != "" {
 		claims := jwt.MapClaims{}
