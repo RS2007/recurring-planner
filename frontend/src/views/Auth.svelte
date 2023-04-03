@@ -31,6 +31,9 @@
 		</button>
 	</div>
 	<div class="border-[2px] border-white/10 mt-4 p-4 rounded-lg">
-		For those with, <span class="text-blue-400 cursor-pointer">recuring plans</span>
+		Currently in testing, if you wanna use it raise an issue <a
+			href="https://github.com/RS2007/recurring-planner"
+			class="text-blue-400">here</a
+		>
 	</div>
 </div>
