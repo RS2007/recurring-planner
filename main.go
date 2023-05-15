@@ -42,5 +42,5 @@ func main() {
 		rd.WriteTo(ctx.Writer)
 	})
 
-	router.Run("localhost:10000")
+	router.Run("0.0.0.0:10000")
 }
