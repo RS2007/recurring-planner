@@ -42,7 +42,7 @@ func GetGoogleAuthToken(code string) (*GoogleAuthToken, error) {
 	fmt.Println("res: ", res)
 	ErrorHandler(err)
 	if res.StatusCode != http.StatusOK {
-		return nil, errors.New("could not retrieve users")
+		return nil, errors.New(fmt.Sprintf("could not retrieve users %v", res))
 	}
 	var resBody bytes.Buffer
 	_, err = io.Copy(&resBody, res.Body)

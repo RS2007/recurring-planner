@@ -63,7 +63,7 @@ func GetGoogleUser(access_token string, id_token string) (*GoogleUserResult, err
 	}
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errors.New("could not retrieve user")
+		return nil, errors.New(fmt.Sprintf("could not retrieve user %v", res))
 	}
 
 	var resBody bytes.Buffer
