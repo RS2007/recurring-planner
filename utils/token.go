@@ -55,6 +55,7 @@ func GetGoogleAuthToken(code string) (*GoogleAuthToken, error) {
 	if err := json.Unmarshal(resBody.Bytes(), &GoogleAuthTokenRes); err != nil {
 		return nil, err
 	}
+	fmt.Println("GoogleAuthToken: ", GoogleAuthTokenRes)
 	tokenBody := &GoogleAuthToken{
 		AccessToken: GoogleAuthTokenRes["access_token"].(string),
 		IdToken:     GoogleAuthTokenRes["id_token"].(string),
