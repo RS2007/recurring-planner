@@ -10,6 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/oauth2"
 	"google.golang.org/api/calendar/v3"
+	"google.golang.org/api/option"
 )
 
 func CreateNewTemplate(c *gin.Context) {
@@ -126,7 +127,13 @@ func AddTemplateToDay(c *gin.Context) {
 	client := config.Client(context.Background(), &oauth2.Token{
 		AccessToken: reqBody.AccessToken,
 	})
-	calendarService, err := calendar.New(client)
+	ctx := context.Background()
+	calendarService,err := calendar.NewService(ctx,option.WithHTTPClient(client),option.WithScopes( 
+			"https://www.googleapis.com/auth/userinfo.email",
+			"https://www.googleapis.com/auth/userinfo.profile",
+			"https://www.googleapis.com/auth/calendar",
+			"openid",
+		))
 	utils.ErrorHandler(err)
 	var eventIds []int32
 	queryRows, err := Db.Query("SELECT eventId FROM event_templates WHERE templateId =$1", reqBody.TemplateId)
