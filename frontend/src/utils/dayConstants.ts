@@ -13,6 +13,7 @@ export const monthNames = [
 	"February",
 	"March",
 	"April",
+	"May",
 	"June",
 	"July",
 	"August",
