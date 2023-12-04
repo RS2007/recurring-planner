@@ -28,6 +28,9 @@ With recurring planner, you can create templates and apply them to the days on w
 
 ## I like this, how can i use this?
 
+> [!NOTE]
+> To access the hosted version of recurring planner go [here](https://rp.rohith.page)
+
 ### Prerequisites
 
 - Node JS (>16.13.1)
